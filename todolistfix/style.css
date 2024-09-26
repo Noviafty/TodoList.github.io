@@ -1,0 +1,140 @@
+body {
+    background-color: #E7CCCC;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    display: none;
+    
+}
+
+.add-activity, .list-activities {
+    background-color: white;
+    border: 2px solid #3498db; /* tosca */
+    margin: 10px;
+    padding: 10px;
+    width: 900px;
+}
+
+h2 {
+    background-color: #3498db; /* biru */
+    color: white;
+    padding: 10px;
+    margin: 0;
+}
+
+.activity-form {
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+}
+
+input[type="text"] {
+    width: 92%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #3498db; /* tosca */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+li .actions {
+    display: flex;
+    gap: 10px;
+}
+
+li .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* General Styles */
+body {
+    background-color: #E7CCCC;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#auth, #register {
+    background-color: white;
+    border: 2px solid #3498db;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+h2 {
+    color: #f6f9fc;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+p {
+    margin-top: 15px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

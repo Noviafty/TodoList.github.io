@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To Do List App</title>
+</head>
+<body>
+    <div id="auth">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p>Belum punya akun? <a href="#" onclick="showRegister()">Daftar di sini</a></p>
+    </div>
+
+    <div id="register" style="display:none;">
+        <h2>Register</h2>
+        <input type="text" id="register-username" placeholder="Username" required>
+        <input type="password" id="register-password" placeholder="Password" required>
+        <button onclick="register()">Register</button>
+        </form>
+        <p>Sudah punya akun? <a href="#" onclick="showLogin()">Login di sini</a></p>
+    </div>
+
+    <div class="container">
+        <div class="add-activity">
+            <h2>Add Activity</h2>
+            <div class="activity-form">
+                <label for="activity">Activity:</label>
+                <input type="text" id="activity" placeholder="Enter your activity...">
+                <button onclick="addActivity()">Add</button>
+            </div>
+        </div>
+        <div class="list-activities">
+            <h2>List Activities</h2>
+            <ul id="activity-list">
+                <!-- List items will be added here dynamically -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // User data simulation
+        let users = [];
+
+        // Active user
+        let activeUser = null;
+        // Menangani daftar aktivitas
+        const activityList = document.getElementById("activity-list");
+
+        // Fungsi untuk menambahkan aktivitas baru
+        function addActivity() {
+            const activityInput = document.getElementById("activity");
+            const activityText = activityInput.value.trim();
+
+            if (activityText !== "") {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <span>${activityText}</span>
+                    <div class="actions">
+                        <button onclick="editActivity(this)">✏️</button>
+                        <button onclick="deleteActivity(this)">❌</button>
+                        <button onclick="completeActivity(this)">✅</button>
+                    </div>
+                `;
+
+                activityList.appendChild(listItem);
+                activityInput.value = "";
+            }
+        }
+
+        // Fungsi untuk mengedit aktivitas
+        function editActivity(button) {
+            const listItem = button.parentElement.parentElement;
+            const activityText = listItem.querySelector("span");
+            const newActivityText = prompt("Edit activity:", activityText.textContent);
+            if (newActivityText !== null) {
+                activityText.textContent = newActivityText;
+            }
+        }
+
+        // Fungsi untuk menghapus aktivitas
+        function deleteActivity(button) {
+            const listItem = button.parentElement.parentElement;
+            activityList.removeChild(listItem);
+        }
+
+        // Fungsi untuk menandai aktivitas selesai
+        function completeActivity(button) {
+            const listItem = button.parentElement.parentElement;
+            listItem.style.textDecoration = "line-through";
+            listItem.style.opacity = 0.5;
+        }
+
+
+
+        // Toggle between login and register
+        function showRegister() {
+            document.getElementById('auth').style.display = 'none';
+            document.getElementById('register').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('register').style.display = 'none';
+            document.getElementById('auth').style.display = 'block';
+        }
+
+        // Register function
+        function register() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+
+            if (username && password) {
+                users.push({ username, password, todos: [] });
+                alert('Registrasi berhasil, silakan login.');
+                showLogin();
+            } else {
+                alert('Mohon lengkapi data');
+            }
+        }
+
+        // Login function
+// Modifikasi pada fungsi login
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                activeUser = user;
+                alert('Login berhasil');
+                // Menampilkan bagian TodoList
+                document.getElementById('auth').style.display = 'none';
+                document.getElementById('register').style.display = 'none';
+                document.querySelector('.container').style.display = 'block';
+            } else {
+                alert('Username atau password salah');
+            }
+        }
+
+
+        // Logout function
+        function logout() {
+            activeUser = null;
+            document.getElementById('app').style.display = 'none';
+            document.getElementById('auth').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
